@@ -63,6 +63,22 @@ class Go_Fish:
         for i in range(starting_number_of_cards):
             self.give_card(self.player_1)
             self.give_card(self.player_2)
+    
+    def a_turn(self, sending_player, target_player):
+        player_bait = input("What would you like to fish for?")
+        assert player_bait in [1,2,3,4,5,6,7,8,9,10,11,12,13]
+        self.go_fishing(player_bait, sending_player, target_player)
+
+    def go_fishing(self, player_bait, sending_player, target_player):
+        i = 0
+        while True:
+            try:
+                if target_player.hand[i].suit == player_bait:
+                    sending_player.hand.append(target_player.hand.pop(i))
+                else:
+                    i += 1
+            except IndexError:
+                break
         
 
 
